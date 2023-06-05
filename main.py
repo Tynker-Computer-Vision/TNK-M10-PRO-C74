@@ -28,11 +28,8 @@ try:
       # Crop the face out of an image and size the image at 200,200
       img, bbox = detector.findFaces(img, draw=False) 
       if bbox:
-        X = bbox[0]['bbox'][0]
-        Y = bbox[0]['bbox'][1]
-        W = bbox[0]['bbox'][2]
-        H = bbox[0]['bbox'][3]
-
+        X, Y, W, H = bbox[0]['bbox']
+       
         croppedImg = img[Y:Y+H, X:X+W]
         resizedImg = [cv2.resize(croppedImg, (200, 200))]
                 
