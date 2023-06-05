@@ -26,15 +26,16 @@ for img in os.listdir(path):
      
     # Crop the face out of an image and size the image at 200,200
     img, bbox = detector.findFaces(img, draw=False) 
-    X, Y, W, H = bbox[0]['bbox']
+    if bboxs:
+      X, Y, W, H = bbox[0]['bbox']
 
-    croppedImg = img[Y:Y+H, X:X+W]
-    resizedImg = [cv2.resize(croppedImg, (200, 200))]
-            
-    images.append(resizedImg)
-    
-    images.append(img)
-    age.append(ages)
+      croppedImg = img[Y:Y+H, X:X+W]
+      resizedImg = [cv2.resize(croppedImg, (200, 200))]
+
+      images.append(resizedImg)
+
+      images.append(img)
+      age.append(ages)
 
 
 age = np.array(age,dtype=np.int64)
